@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  pdftotxt:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 900
+      Role: 'arn:aws:iam::829147377277:role/lambda_s3'
+      Environment:
+        Variables:
+          TARGET_BUCKET: pdftotext-target-txt-bucket
+      Layers:
+        - 'arn:aws:lambda:ap-northeast-1:829147377277:layer:tika:1'
